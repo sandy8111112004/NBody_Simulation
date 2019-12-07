@@ -78,4 +78,16 @@ public class Body {
         return netFy;
     }
 
+    public void update(double dt, double fX,double fY){
+        double aX = 0;
+        double aY = 0;
+        
+        aX = fX/this.mass;
+        aY = fY/this.mass;
+        this.xxVel = this.xxVel + aX * dt;
+        this.yyVel = this.yyVel + aY * dt;
+        this.xxPos = this.xxPos + dt * this.xxVel;
+        this.yyPos = this.yyPos + dt * this.yyVel;
+    }
+
 }
