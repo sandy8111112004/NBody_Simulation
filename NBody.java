@@ -13,8 +13,7 @@ public class NBody{
         double radius = in.readDouble();
         Body[] bArr = new Body[numPlanets];
 
-        int i = 0;
-        while(!in.isEmpty()){
+        for (int i = 0;i < numPlanets;i++){
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();
             double xxVel = in.readDouble();
@@ -24,10 +23,18 @@ public class NBody{
 
             Body b = new Body(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
             bArr[i] = b;
-            i++;
         }
 
         return bArr;
+    }
+
+    public static void main(String[] args) {
+        double T = Double.parseDouble(args[0]);
+        double dt = Double.parseDouble(args[1]);
+        String filename = args[2];
+        Body[] bArr = NBody.readBodies(filename);
+        double radius = NBody.readRadius(fileName);
+
     }
 
 }
