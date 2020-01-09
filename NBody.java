@@ -33,8 +33,20 @@ public class NBody{
         double dt = Double.parseDouble(args[1]);
         String filename = args[2];
         Body[] bArr = NBody.readBodies(filename);
-        double radius = NBody.readRadius(fileName);
+        double radius = NBody.readRadius(filename);
 
+        //draw background image
+        StdDraw.setScale((-1*radius),radius);
+        StdDraw.clear();
+        StdDraw.picture(0,0,"./images/starfield.jpg");
+        for(int i=0; i<bArr.length ;i++){
+            bArr[i].draw();
+        }
+
+
+
+        StdDraw.show();
+        StdDraw.pause(2000);
     }
 
 }
