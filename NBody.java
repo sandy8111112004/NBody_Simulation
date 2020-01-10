@@ -34,19 +34,33 @@ public class NBody{
         String filename = args[2];
         Body[] bArr = NBody.readBodies(filename);
         double radius = NBody.readRadius(filename);
+        double currentTime = 0;
+        double[] xForces= new double[bArr.length];
+        double[] yForces=new double[bArr.length];
 
+        StdDraw.enableDoubleBuffering();
         //draw background image
         StdDraw.setScale((-1*radius),radius);
         StdDraw.clear();
-        StdDraw.picture(0,0,"./images/starfield.jpg");
-        for(int i=0; i<bArr.length ;i++){
-            bArr[i].draw();
+
+        while (currentTime <= T){
+            StdDraw.picture(0,0,"./images/starfield.jpg");
+            for(int i=0; i<bArr.length ;i++){
+                yForces[i]=bArr[i].calcNetForceExertedByY(bArr);
+                xForces[i]=bArr[i].calcNetForceExertedByX(bArr);
+            }
+            for (int i =0;i<bArr.length;i++){
+                bArr[i].update(dt,xForces[i], yForces[i]);
+                bArr[i].draw();
+            }
+            StdDraw.show();
+            StdDraw.pause(10);
+            currentTime += dt;
         }
 
-
-
-        StdDraw.show();
-        StdDraw.pause(2000);
+        
+       
+       
     }
 
 }
