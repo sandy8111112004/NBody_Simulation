@@ -38,11 +38,12 @@ public class NBody{
         double[] xForces= new double[bArr.length];
         double[] yForces=new double[bArr.length];
 
+        StdAudio.close();
+        StdAudio.loop("audio/2001.mid");
         StdDraw.enableDoubleBuffering();
         //draw background image
         StdDraw.setScale((-1*radius),radius);
         StdDraw.clear();
-
         while (currentTime <= T){
             StdDraw.picture(0,0,"./images/starfield.jpg");
             for(int i=0; i<bArr.length ;i++){
@@ -58,9 +59,15 @@ public class NBody{
             currentTime += dt;
         }
 
-        
+        StdOut.printf("%d\n", bArr.length);
+        StdOut.printf("%.2e\n", radius);
+        for (int i = 0; i < bArr.length; i++) {
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                        bArr[i].xxPos, bArr[i].yyPos, bArr[i].xxVel,
+                        bArr[i].yyVel, bArr[i].mass, bArr[i].imgFileName);   
+        }    
        
-       
+        StdAudio.close();
     }
 
 }
